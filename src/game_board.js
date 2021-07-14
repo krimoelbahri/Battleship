@@ -11,6 +11,9 @@ const GameBoard= function(){
 		["","","","","","","","","",""],
 		["","","","","","","","","",""],
 	];
-	return{gameBoard,};
+
+	const receiveAttack = function(){};
+	const arrangeShips = function(){};
+	return{gameBoard,receiveAttack,arrangeShips};
 };
 export {GameBoard};
