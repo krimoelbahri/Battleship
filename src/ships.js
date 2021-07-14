@@ -13,6 +13,6 @@ const Ship=function(length){
 		if(hitArray.length===length){return true;}
 		return false; 
 	};
-	return({hitArray,position,hit,isSunk});
+	return{length,hitArray,position,hit,isSunk};
 };
 export {Ship};
