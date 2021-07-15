@@ -1,5 +1,5 @@
 const GameBoard= function(){
-	let gameBoard=[
+	const gameBoardArray=[
 		["","","","","","","","","",""],
 		["","","","","","","","","",""],
 		["","","","","","","","","",""],
@@ -13,18 +13,18 @@ const GameBoard= function(){
 	];
 
 	const receiveAttack = function(row,column){
-		if(gameBoard[row][column]===""){return gameBoard[row][column]="missed";}
-		if(gameBoard[row][column].hit([row,column])){return gameBoard[row][column]="hit";}
+		if(gameBoardArray[row][column]===""){return gameBoardArray[row][column]="missed";}
+		if(gameBoardArray[row][column].hit([row,column])){return gameBoardArray[row][column]="hit";}
 	};
 	const checkGB= function(ship,position,start){
 		if(position==="horizontal"&& ship.length+start.column<=10) {
 			for(let i=0;i<ship.length;i++){ 
-				if(gameBoard[start.row][start.column+i]!==""){return false;}
+				if(gameBoardArray[start.row][start.column+i]!==""){return false;}
 			}
 		}
 		if(position==="vertical"&& ship.length+start.row<=10) {
 			for(let i=0;i<ship.length;i++){ 
-				if(gameBoard[start.row+i][start.column]!==""){return false;}
+				if(gameBoardArray[start.row+i][start.column]!==""){return false;}
 			}
 		}
 		return true;
@@ -34,13 +34,13 @@ const GameBoard= function(){
 		if(position==="horizontal"&& ship.length+start.column<=10) {
 			for(let i=0;i<ship.length;i++){ 
 				ship.position.push([start.row,start.column+i]);
-				this.gameBoard[start.row][start.column+i]=ship;
+				this.gameBoardArray[start.row][start.column+i]=ship;
 			}
 		}
 		if(position==="vertical"&& ship.length+start.row<=10) {
 			for(let i=0;i<ship.length;i++){ 
 				ship.position.push([start.row+i,start.column]);
-				this.gameBoard[start.row+i][start.column]=ship;
+				this.gameBoardArray[start.row+i][start.column]=ship;
 			}
 		}
 		return true;
@@ -50,6 +50,6 @@ const GameBoard= function(){
 		if(sunkenShips.length === array.length){return true;}
 		return false;
 	};
-	return{gameBoard,receiveAttack,arrangeShips,isAllShipsSunk};
+	return{gameBoardArray,receiveAttack,arrangeShips,isAllShipsSunk};
 };
 export {GameBoard};
