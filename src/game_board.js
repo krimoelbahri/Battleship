@@ -34,13 +34,13 @@ const GameBoard= function(){
 		if(position==="horizontal"&& ship.length+start.column<=10) {
 			for(let i=0;i<ship.length;i++){ 
 				ship.position.push([start.row,start.column+i]);
-				this.gameBoardArray[start.row][start.column+i]=ship;
+				this.getUpdatedGBArray()[start.row][start.column+i]=ship;
 			}
 		}
 		if(position==="vertical"&& ship.length+start.row<=10) {
 			for(let i=0;i<ship.length;i++){ 
 				ship.position.push([start.row+i,start.column]);
-				this.gameBoardArray[start.row+i][start.column]=ship;
+				this.getUpdatedGBArray()[start.row+i][start.column]=ship;
 			}
 		}
 		return true;
@@ -50,6 +50,9 @@ const GameBoard= function(){
 		if(sunkenShips.length === array.length){return true;}
 		return false;
 	};
-	return{gameBoardArray,receiveAttack,arrangeShips,isAllShipsSunk};
+	const getUpdatedGBArray= function(){
+		return gameBoardArray;
+	};
+	return{getUpdatedGBArray,receiveAttack,arrangeShips,isAllShipsSunk};
 };
 export {GameBoard};
