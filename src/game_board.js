@@ -17,12 +17,12 @@ const GameBoard= function(){
 		if(gameBoard[row][column].hit([row,column])){return gameBoard[row][column]="hit";}
 	};
 	const checkGB= function(ship,position,start){
-		if(position==="horizontal"&& ship.length+start.column<10){
+		if(position==="horizontal"&& ship.length+start.column<=10){
 			for(let i=0;i<ship.length;i++){ 
 				if(gameBoard[start.row][start.column+i]!==""){return false;}
 			}
 		}
-		if(position==="vertical"&& ship.length+start.row<10){
+		if(position==="vertical"&& ship.length+start.row<=10){
 			for(let i=0;i<ship.length;i++){ 
 				if(gameBoard[start.row+i][start.column]!==""){return false;}
 			}
@@ -31,13 +31,13 @@ const GameBoard= function(){
 	};
 	const arrangeShips = function(ship,position,start){
 		if(!checkGB(ship,position,start)){return false;}
-		if(position==="horizontal"&& ship.length+start.column<10){
+		if(position==="horizontal"&& ship.length+start.column<=10){
 			for(let i=0;i<ship.length;i++){ 
 				ship.position.push([start.row,start.column+i]);
 				this.gameBoard[start.row][start.column+i]=ship;
 			}
 		}
-		if(position==="vertical"&& ship.length+start.row<10){
+		if(position==="vertical"&& ship.length+start.row<=10){
 			for(let i=0;i<ship.length;i++){ 
 				ship.position.push([start.row+i,start.column]);
 				this.gameBoard[start.row+i][start.column]=ship;
@@ -45,6 +45,11 @@ const GameBoard= function(){
 		}
 		return true;
 	};
-	return{gameBoard,receiveAttack,arrangeShips};
+	const isAllShipsSunk = function(array){
+		let sunkenShips= array.filter((ship)=>ship.isSunk());
+		if(sunkenShips.length === array.length){return true;}
+		return false;
+	};
+	return{gameBoard,receiveAttack,arrangeShips,isAllShipsSunk};
 };
 export {GameBoard};
