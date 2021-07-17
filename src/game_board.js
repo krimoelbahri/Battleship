@@ -13,34 +13,48 @@ const GameBoard= function(){
 	];
 
 	const receiveAttack = function(row,column){
-		if(gameBoardArray[row][column]===""){return gameBoardArray[row][column]="missed";}
-		if(gameBoardArray[row][column].hit([row,column])){return gameBoardArray[row][column]="hit";}
+		if(gameBoardArray[row][column]===""){
+			gameBoardArray[row][column]="missed";
+			return ("missed");
+		}
+		if(gameBoardArray[row][column].hit([row,column])){
+			gameBoardArray[row][column]="hit";
+			return ("hit");}
 	};
 	const checkGB= function(ship,position,start){
+		if(position==="horizontal"&& ship.length+start.column >10 
+		|| position==="vertical"&& ship.length+start.row>10) {
+			return false;
+		}
+
 		if(position==="horizontal"&& ship.length+start.column<=10) {
 			for(let i=0;i<ship.length;i++){ 
-				if(gameBoardArray[start.row][start.column+i]!==""){return false;}
+				if(gameBoardArray[start.row][start.column+i]!==""){
+					return false;
+				}
 			}
 		}
 		if(position==="vertical"&& ship.length+start.row<=10) {
 			for(let i=0;i<ship.length;i++){ 
-				if(gameBoardArray[start.row+i][start.column]!==""){return false;}
+				if(gameBoardArray[start.row+i][start.column]!==""){
+					return false;
+				}
 			}
 		}
 		return true;
 	};
 	const arrangeShips = function(ship,position,start){
 		if(!checkGB(ship,position,start)){return false;}
-		if(position==="horizontal"&& ship.length+start.column<=10) {
+		if(position==="horizontal") {
 			for(let i=0;i<ship.length;i++){ 
 				ship.position.push([start.row,start.column+i]);
-				this.getUpdatedGBArray()[start.row][start.column+i]=ship;
+				this.gameBoardArray[start.row][start.column+i]=ship;
 			}
 		}
-		if(position==="vertical"&& ship.length+start.row<=10) {
+		if(position==="vertical") {
 			for(let i=0;i<ship.length;i++){ 
 				ship.position.push([start.row+i,start.column]);
-				this.getUpdatedGBArray()[start.row+i][start.column]=ship;
+				this.gameBoardArray[start.row+i][start.column]=ship;
 			}
 		}
 		return true;
@@ -50,9 +64,7 @@ const GameBoard= function(){
 		if(sunkenShips.length === array.length){return true;}
 		return false;
 	};
-	const getUpdatedGBArray= function(){
-		return gameBoardArray;
-	};
-	return{getUpdatedGBArray,receiveAttack,arrangeShips,isAllShipsSunk};
+	
+	return{gameBoardArray,receiveAttack,arrangeShips,isAllShipsSunk};
 };
 export {GameBoard};
