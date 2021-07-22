@@ -27,14 +27,14 @@ const GameBoard= function(){
 			return false;
 		}
 
-		if(position==="horizontal"&& ship.length+start.column<=10) {
+		if(position==="horizontal") {
 			for(let i=0;i<ship.length;i++){ 
 				if(gameBoardArray[start.row][start.column+i]!==""){
 					return false;
 				}
 			}
 		}
-		if(position==="vertical"&& ship.length+start.row<=10) {
+		if(position==="vertical") {
 			for(let i=0;i<ship.length;i++){ 
 				if(gameBoardArray[start.row+i][start.column]!==""){
 					return false;
