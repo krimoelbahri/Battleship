@@ -30,6 +30,7 @@ const Player= function(){
 		let attackResult= enemy.gameBoard.receiveAttack(row,column);
 		return (attackResult);
 	};
+	return {ships,gameBoard,attackEnemy,randomlyArrange};
 
 };
 export {Player};
