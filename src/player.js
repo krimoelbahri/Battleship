@@ -7,6 +7,11 @@ const Player= function(){
 
 	let airCraft=Ship(5);let battleShip=Ship(4);let cruiser=Ship(3);
 	let destroyer1=Ship(2);let destroyer2=Ship(2);let submarine1=Ship(1);let submarine2=Ship(1);
+	//player methods
+
+	const ships=[airCraft,battleShip,cruiser,destroyer1,destroyer2,submarine1,submarine2];
+	const gameBoard= GameBoard();
+	
 	
 };
 export {Player};
