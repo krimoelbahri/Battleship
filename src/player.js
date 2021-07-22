@@ -26,8 +26,10 @@ const Player= function(){
 		}
 	};
 	
-	
-	
+	const attackEnemy= function(enemy,row,column){
+		let attackResult= enemy.gameBoard.receiveAttack(row,column);
+		return (attackResult);
+	};
 
 };
 export {Player};
