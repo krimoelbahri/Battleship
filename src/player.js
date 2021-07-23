@@ -1,6 +1,6 @@
 import {Ship} from "./ships";
 import {GameBoard} from "./game_board";
-import {getRandomRowColumn} from "./GBoard_handling";
+import {getRandomRowColumn, renderArrangedShips} from "./GBoard_handling";
 import {getRandomOrientation} from "./GBoard_handling";
 
 
@@ -14,13 +14,16 @@ const Player= function(){
 	const ships=[airCraft,battleShip,cruiser,destroyer1,destroyer2,submarine1,submarine2];
 	const gameBoard= GameBoard();
 	
-	const randomlyArrange= function(){
+	const randomlyArrange= function(name){
 		let i=0;
 		while(i<ships.length){
 			let rndRow=getRandomRowColumn().row;
 			let rndColumn= getRandomRowColumn().column;
 			let orientation= getRandomOrientation();
 			if(gameBoard.arrangeShips(ships[i],orientation,{row:rndRow,column:rndColumn})){
+				if(name==="player"){
+					renderArrangedShips(name,`${i}`,orientation,{row:rndRow,column:rndColumn});
+				}
 				i++;
 			}
 		}
