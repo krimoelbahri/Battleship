@@ -11,10 +11,10 @@ const htmlCreate= function(htmlElement,id,_class,dataRow,dataColumn){
 
 	return element;
 };
-const showHideElement= function(id,_class){
+const toggleElementClass= function(id,_class){
 	let element=document.getElementById(id);
 	element.classList.toggle(_class);
 };
 
 export {htmlCreate};
-export {showHideElement};
+export {toggleElementClass};
